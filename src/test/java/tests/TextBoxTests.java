@@ -14,6 +14,9 @@ public class TextBoxTests {
     static void beforeAll() {
         Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = "https://demoqa.com";
+        Configuration.pageLoadStrategy = "eager";
+        Configuration.holdBrowserOpen = true;
+        Configuration.timeout = 5000;
     }
 
     @Test
@@ -26,10 +29,10 @@ public class TextBoxTests {
         $("#permanentAddress").setValue("another address");
         $("#submit").click();
 
-        $("#output").$("#name").shouldHave(text("Max"));
-        $("#output").$("#email").shouldHave(text("Max@exmpl.com"));
-        $("#output").$("#currentAddress").shouldHave(text("some address"));
-        $("#output").$("#permanentAddress").shouldHave(text("another address"));
+        $("#output #name").shouldHave(text("Max"));
+        $("#output #email").shouldHave(text("Max@exmpl.com"));
+        $("#output #currentAddress").shouldHave(text("some address"));
+        $("#output #permanentAddress").shouldHave(text("another address"));
     }
 
 }
