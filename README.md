@@ -1,1 +1,0 @@
-# qaguru_hw3
