@@ -39,7 +39,8 @@ public class StudentRegistrationFormTest {
         $("#subjectsInput").setValue("Maths").pressEnter();
         $("#hobbiesWrapper").$(byText("Music")).click();
 
-        $("#uploadPicture").uploadFromClasspath("262.png");
+        $("#uploadPicture").uploadFromClasspath("262.jpg");
+
 
     }
 
