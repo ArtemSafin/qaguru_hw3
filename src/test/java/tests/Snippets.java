@@ -92,8 +92,8 @@ public class Snippets {
         $("").setValue(""); // clear
 
         $("div").sendKeys("c"); // нажать кнопку С (или любую другую) на выбранном элементе
-        actions().sendKeys("c").perform(); //hotkey c on whole application
-        actions().sendKeys(Keys.chord(Keys.CONTROL, "f")).perform(); // кобинация клавишь Ctrl + F
+        actions().sendKeys("c").perform(); //hotkey "C" on whole application
+        actions().sendKeys(Keys.chord(Keys.CONTROL, "f")).perform(); // комбинация клавишь Ctrl + F
         $("html").sendKeys(Keys.chord(Keys.CONTROL, "f"));
 
         $("").pressEnter();
