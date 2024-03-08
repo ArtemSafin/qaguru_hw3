@@ -1,26 +1,18 @@
 package tests;
 
-import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import pages.RegistrationPage;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class StudentRegistrationFormTest {
-    @BeforeAll
-    static void beforeAll() {
-        Configuration.browserSize = "1920x1080";
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.pageLoadStrategy = "eager";
-        Configuration.timeout = 5000;
-    }
+public class RegistrationTests extends TestBase{
+
 
     @Test
     void studentRegistrationForm() {
         open("/automation-practice-form");
-
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
 
@@ -29,6 +21,7 @@ public class StudentRegistrationFormTest {
         $("#userEmail").setValue("charlie@gmail.com");
 
         $("#genterWrapper").$(byText("Male")).click();
+
         $("#userNumber").setValue("8800555353");
 
         $("#dateOfBirth-wrapper").click();
