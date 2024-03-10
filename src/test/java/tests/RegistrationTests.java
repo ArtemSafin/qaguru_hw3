@@ -1,7 +1,6 @@
 package tests;
 
 import org.junit.jupiter.api.Test;
-import pages.RegistrationPage;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
@@ -36,6 +35,7 @@ public class RegistrationTests extends TestBase{
         $("#uploadPicture").uploadFromClasspath("262.jpg");
 
         $("#currentAddress").setValue("Some address");
+
         $("#stateCity-wrapper").$(byText("Select State")).click();
         $("#stateCity-wrapper").$(byText("NCR")).click();
         $("#stateCity-wrapper").$(byText("Select City")).click();

@@ -2,8 +2,8 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
+import pages.components.TableDataComponent;
 
-import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
@@ -15,11 +15,18 @@ public class RegistrationPage {
             userEmailInput = $("#userEmail"),
             genterWrapper = $("#genterWrapper"),
             userNumberInput = $("#userNumber"),
-            calendarInput = $("#dateOfBirth-wrapper");
+            calendarInput = $("#dateOfBirth-wrapper"),
+            subjectElement = $("#subjectsInput"),
+            hobbiesWrapper = $("#hobbiesWrapper"),
+            uploadPicture = $("#uploadPicture"),
+            currentAddress = $("#currentAddress"),
+            stateSelect = $("#react-select-3-input"),
+            citySelect = $("#react-select-4-input"),
+            submitElement = $("#submit"),
+            closeElement = $("#closeLargeModal");
 
-//    subjectElement = $("#subjectsContainer").click();
     CalendarComponent calendarComponent = new CalendarComponent();
-
+    TableDataComponent tableDataComponent = new TableDataComponent();
 
     public RegistrationPage openPage() {
         open("/automation-practice-form");
@@ -27,6 +34,7 @@ public class RegistrationPage {
         executeJavaScript("$('footer').remove()");
         return this;
     }
+
     public RegistrationPage setFirstName(String value) {
         firstNameInput.setValue(value);
         return this;
@@ -52,13 +60,35 @@ public class RegistrationPage {
         calendarComponent.setDate(day, month, year);
         return this;
     }
-//    public RegistrationPage setSubject(String subject) {
-//        subjectElement.setValue(subject).pressEnter();
-//        return this;
-//    }
-
-    public RegistrationPage checkResult(String key, String value) {
-        $(".table-responsive").$(byText(key)).parent().shouldHave(text(value));
+    public RegistrationPage setSubject(String value) {
+        subjectElement.setValue(value).pressEnter();
         return this;
+    }
+    public RegistrationPage setHobbies(String hobbies) {
+        hobbiesWrapper.$(byText(hobbies)).click();
+        return this;
+    }
+    public RegistrationPage setPicture(String filename) {
+        uploadPicture.uploadFromClasspath(filename);
+        return this;
+    }
+    public RegistrationPage setAddress(String value) {
+    currentAddress.setValue(value);
+    return this;
+    }
+    public RegistrationPage setState(String state, String city) {
+        stateSelect.setValue(state).pressEnter();
+        citySelect.setValue(city).pressEnter();
+        return this;
+    };
+    public void clickToSubmit() {
+        submitElement.click();
+    }
+    public RegistrationPage checkResult(String key, String value) {
+        tableDataComponent.getResultTable(key, value);
+        return this;
+    }
+    public void clickToClose() {
+        closeElement.click();
     }
 }
