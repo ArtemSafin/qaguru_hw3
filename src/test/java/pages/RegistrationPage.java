@@ -4,12 +4,13 @@ import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
 import pages.components.TableDataComponent;
 
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 public class RegistrationPage {
-    private SelenideElement
+    private final SelenideElement
             firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
             userEmailInput = $("#userEmail"),
@@ -23,7 +24,8 @@ public class RegistrationPage {
             stateSelect = $("#react-select-3-input"),
             citySelect = $("#react-select-4-input"),
             submitElement = $("#submit"),
-            closeElement = $("#closeLargeModal");
+            closeElement = $("#closeLargeModal"),
+            checkResultNegative = $("#example-modal-sizes-title-lg");
 
     CalendarComponent calendarComponent = new CalendarComponent();
     TableDataComponent tableDataComponent = new TableDataComponent();
@@ -87,6 +89,10 @@ public class RegistrationPage {
     public RegistrationPage checkResult(String key, String value) {
         tableDataComponent.getResultTable(key, value);
         return this;
+    }
+    public void dataTableNotVisible() {
+        checkResultNegative.shouldNotBe(visible);
+
     }
     public void clickToClose() {
         closeElement.click();

@@ -33,4 +33,37 @@ public class RegistrationWithPageObjectTests extends TestBase {
                 .checkResult("State and City", "NCR Noida");
         registrationPage.clickToClose();
     }
+    @Test
+    void studentRegistrationFormNegativeTest() {
+        registrationPage.openPage()
+                .setFirstName("")
+                .setLastName("LaVey")
+                .setEmail("charlie@gmail.com")
+                .setGender("Male")
+                .setUserNumber("8800555353")
+                .setDateOfBirth("17", "July", "1990")
+                .setSubject("Maths")
+                .setHobbies("Music")
+                .setPicture("262.jpg")
+                .setAddress("Some address")
+                .setState("NCR", "Noida")
+                .clickToSubmit();
+
+        registrationPage.dataTableNotVisible();
+    }
+    @Test
+    void studentRegistrationFormMinimalDataTest() {
+        registrationPage.openPage()
+                .setFirstName("Anton")
+                .setLastName("LaVey")
+                .setEmail("charlie@gmail.com")
+                .setGender("Male")
+                .setUserNumber("8800555353")
+                .clickToSubmit();
+
+        registrationPage.checkResult("Student Name", "Anton LaVey")
+                .checkResult("Student Email", "charlie@gmail.com")
+                .checkResult("Gender", "Male")
+                .checkResult("Mobile", "8800555353");
+    }
 }
