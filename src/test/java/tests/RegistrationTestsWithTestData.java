@@ -6,21 +6,20 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class RegistrationTests extends TestBase{
+public class RegistrationTestsWithTestData extends TestBase{
+
 
     @Test
     void studentRegistrationForm() {
-        String firstName = "Anton";
-
         open("/automation-practice-form");
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
 
-        $("#firstName").setValue(firstName);
+        $("#firstName").setValue("Anton");
         $("#lastName").setValue("LaVey");
         $("#userEmail").setValue("charlie@gmail.com");
 
-        $("#genterWrapper").$(byText("Male")).click();                                                                                                                                                                                                                                                                                                                                             
+        $("#genterWrapper").$(byText("Male")).click();
 
         $("#userNumber").setValue("8800555353");
 

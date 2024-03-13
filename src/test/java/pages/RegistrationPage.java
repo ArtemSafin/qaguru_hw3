@@ -14,7 +14,7 @@ public class RegistrationPage {
             firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
             userEmailInput = $("#userEmail"),
-            genterWrapper = $("#genterWrapper"),
+            genderWrapper = $("#genterWrapper"),
             userNumberInput = $("#userNumber"),
             calendarInput = $("#dateOfBirth-wrapper"),
             subjectElement = $("#subjectsInput"),
@@ -40,19 +40,19 @@ public class RegistrationPage {
     public RegistrationPage setFirstName(String value) {
         firstNameInput.setValue(value);
         return this;
-    };
+    }
     public RegistrationPage setLastName(String value) {
         lastNameInput.setValue(value);
         return this;
-    };
+    }
     public RegistrationPage setEmail(String value) {
         userEmailInput.setValue(value);
         return this;
-    };
+    }
     public RegistrationPage setGender(String value) {
-        genterWrapper.$(byText(value)).click();
+        genderWrapper.$(byText(value)).click();
         return this;
-    };
+    }
     public RegistrationPage setUserNumber(String value) {
         userNumberInput.setValue(value);
         return this;
@@ -82,7 +82,7 @@ public class RegistrationPage {
         stateSelect.setValue(state).pressEnter();
         citySelect.setValue(city).pressEnter();
         return this;
-    };
+    }
     public void clickToSubmit() {
         submitElement.click();
     }
