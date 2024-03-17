@@ -6,18 +6,18 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class RegistrationTestsWithTestData extends TestBase{
-
+public class RegistrationTestsWithTestData extends TestBase {
 
     @Test
     void studentRegistrationForm() {
-        open("/automation-practice-form");
+
+                open("/automation-practice-form");
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
 
-        $("#firstName").setValue("Anton");
-        $("#lastName").setValue("LaVey");
-        $("#userEmail").setValue("charlie@gmail.com");
+        $("#firstName").setValue("firstName");
+        $("#lastName").setValue("lastName");
+        $("#userEmail").setValue("userEmail");
 
         $("#genterWrapper").$(byText("Male")).click();
 
@@ -34,7 +34,7 @@ public class RegistrationTestsWithTestData extends TestBase{
 
         $("#uploadPicture").uploadFromClasspath("262.jpg");
 
-        $("#currentAddress").setValue("Some address");
+        $("#currentAddress").setValue("streetAddress");
 
         $("#stateCity-wrapper").$(byText("Select State")).click();
         $("#stateCity-wrapper").$(byText("NCR")).click();
@@ -43,15 +43,15 @@ public class RegistrationTestsWithTestData extends TestBase{
 
         $("#submit").click();
         $(".table-responsive")
-                .shouldHave(text("Anton LaVey"))
-                .shouldHave(text("charlie@gmail.com"))
+                .shouldHave(text("firstName"), text("lastName"))
+                .shouldHave(text("userEmail"))
                 .shouldHave(text("Male"))
                 .shouldHave(text("8800555353"))
                 .shouldHave(text("17 July,1990"))
                 .shouldHave(text("Maths"))
                 .shouldHave(text("Music"))
                 .shouldHave(text("262.jpg"))
-                .shouldHave(text("Some address"))
+                .shouldHave(text("streetAddress"))
                 .shouldHave(text("NCR Noida"));
 
         $(".modal-footer").$(byText("Close")).click();
