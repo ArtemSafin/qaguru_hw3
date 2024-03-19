@@ -92,7 +92,6 @@ public class RegistrationPage {
     }
     public void dataTableNotVisible() {
         checkResultNegative.shouldNotBe(visible);
-
     }
     public void clickToClose() {
         closeElement.click();
