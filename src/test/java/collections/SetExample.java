@@ -16,7 +16,7 @@ public class SetExample {
     }
     public void getBands(Set<String> bands) {
         for (String band : bands) {
-            System.out.println("List: " + band);
+            System.out.println("Band: " + band);
         }
     }
 
