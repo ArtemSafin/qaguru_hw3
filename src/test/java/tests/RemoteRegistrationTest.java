@@ -1,9 +1,13 @@
 package tests;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+import java.util.Map;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
@@ -16,7 +20,14 @@ public class RemoteRegistrationTest {
         Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.pageLoadStrategy = "eager";
-        Configuration.timeout = 5000;
+        Configuration.timeout = 10000;
+        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("selenoid:options", Map.<String, Object>of(
+                "enableVNC", true,
+                "enableVideo", true
+        ));
     }
 
     @Test
@@ -36,6 +47,8 @@ public class RemoteRegistrationTest {
                     $("#userNumber").setValue("8800555353");
 
                     $("#dateOfBirth-wrapper").click();
+                    $("#dateOfBirth-wrapper").shouldBe(Condition.visible);
+
                     $("#dateOfBirth-wrapper").$(byText("July")).click();
                     $("#dateOfBirth-wrapper").$(byText("1990")).click();
                     $("#dateOfBirth-wrapper").$(byText("17")).click();
